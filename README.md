@@ -7,9 +7,9 @@ Just a fun and useful playground for now.
 
 See `index.html` for code examples.
 
-Built with coffescript. To compile `swipe.coffee` while you edit it, run:
+Built with coffescript. To compile while you edit it, run:
 
-    coffee --watch --compile --bare swipe.coffee
+    coffee --watch --compile --bare *.coffee
 
 You may then open `index.html` on a mobile browser to see/test your changes.
 
