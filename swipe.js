@@ -8,21 +8,17 @@ NotAMouse = {
     preventDefaultEvents: true
   },
   state: {
+    isMoving: false,
     startX: null,
-    startY: null,
-    isMoving: false
+    startY: null
   },
-  wipeLeft: function() {},
-  wipeRight: function() {},
-  wipeUp: function() {},
-  wipeDown: function() {},
   onTouchStart: function(e) {
     var that;
     that = NotAMouse;
     if (e.touches.length === 1) {
+      that.state.isMoving = true;
       that.state.startX = e.touches[0].pageX;
       that.state.startY = e.touches[0].pageY;
-      that.state.isMoving = true;
       return document.addEventListener('touchmove', that.onTouchMove, false);
     }
   },
@@ -56,8 +52,8 @@ NotAMouse = {
     var that;
     that = NotAMouse;
     document.removeEventListener('touchmove', that.onTouchMove);
-    that.state.startX = null;
-    return that.state.isMoving = false;
+    that.state.isMoving = false;
+    return that.state.startX = that.state.startY = null;
   },
   initialize: function() {
     if ('ontouchstart' in document.documentElement) {

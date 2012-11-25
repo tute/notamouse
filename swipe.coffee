@@ -2,27 +2,27 @@
 # http://www.netcu.de/jquery-touchwipe-iphone-ipad-library
 
 NotAMouse =
+  # wipeLeft: ->
+  # wipeRight: ->
+  # wipeUp: ->
+  # wipeDown: ->
+
   config:
     min_move_x: 20
     min_move_y: 20
     preventDefaultEvents: true
 
   state:
+    isMoving: false
     startX: null
     startY: null
-    isMoving: false
-
-  wipeLeft: ->
-  wipeRight: ->
-  wipeUp: ->
-  wipeDown: ->
 
   onTouchStart: (e) ->
     that = NotAMouse
     if e.touches.length is 1
+      that.state.isMoving = true
       that.state.startX = e.touches[0].pageX
       that.state.startY = e.touches[0].pageY
-      that.state.isMoving = true
       document.addEventListener 'touchmove', that.onTouchMove, false
 
   onTouchMove: (e) ->
@@ -43,8 +43,8 @@ NotAMouse =
   cancelTouch: ->
     that = NotAMouse
     document.removeEventListener 'touchmove', that.onTouchMove
-    that.state.startX = null
     that.state.isMoving = false
+    that.state.startX = that.state.startY = null
 
   initialize: ->
     if 'ontouchstart' of document.documentElement

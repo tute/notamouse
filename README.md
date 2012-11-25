@@ -18,7 +18,9 @@ demonstration. Swipe with one finger in four directions to move around
 the red box.
 
 
-## Resources
+# Forget about jQuery LightBoxes and small arrows, slide photos as if you were a human.
+
+### Resources
 
 Used [jquery-touchwipe-iphone-ipad-library](http://www.netcu.de/jquery-touchwipe-iphone-ipad-library) as a starting point.
 
