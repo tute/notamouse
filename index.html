@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>You Are Not a Mouse. Touch me!</title>
+    <link href='http://twitter.github.com/bootstrap/assets/css/bootstrap.css' rel='stylesheet'>
+    <link href='styles.css' rel='stylesheet'>
+    <script src="swipe.js"></script>
+    <script>
+      NotAMouse.initialize()
+      NotAMouse.wipeLeft = function() {
+        moveBox('left')
+        updateWhatHappened('&rarr;')
+      }
+      NotAMouse.wipeRight = function() {
+        moveBox('right')
+        updateWhatHappened('&larr;')
+      }
+      NotAMouse.wipeUp = function() {
+        moveBox('up')
+        updateWhatHappened('&darr;')
+      }
+      NotAMouse.wipeDown = function() {
+        moveBox('down')
+        updateWhatHappened('&uarr;')
+      }
+
+      function moveBox(direction) {
+        box = document.getElementById('dance_box')
+        move = 50
+        if (direction == 'up') {
+          box.style.top = (box.offsetTop + move) + 'px'
+        } else if (direction == 'down') {
+          box.style.top = (box.offsetTop - move) + 'px'
+        } else if (direction == 'left') {
+          box.style.left = (box.offsetLeft + move) + 'px'
+        } else if (direction == 'right') {
+          box.style.left = (box.offsetLeft - move) + 'px'
+        }
+      }
+
+      function updateWhatHappened(content) {
+        document.getElementById('what_happened').innerHTML = content
+      }
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <h1>Touch me!</h1>
+    </header>
+
+    <p>
+      Last event captured:<br>
+      <strong id="what_happened">?</strong>
+    </p>
+
+    <div id="dance_box"></div>
+  </body>
+</html>

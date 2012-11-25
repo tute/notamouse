@@ -1,0 +1,51 @@
+# http://developer.apple.com/library/IOs/#documentation/AppleApplications/Reference/SafariWebContent/HandlingEvents/HandlingEvents.html
+# http://www.netcu.de/jquery-touchwipe-iphone-ipad-library
+
+NotAMouse =
+  config:
+    min_move_x: 20
+    min_move_y: 20
+    preventDefaultEvents: true
+
+  state:
+    startX: null
+    startY: null
+    isMoving: false
+
+  wipeLeft: ->
+  wipeRight: ->
+  wipeUp: ->
+  wipeDown: ->
+
+  onTouchStart: (e) ->
+    that = NotAMouse
+    if e.touches.length is 1
+      that.state.startX = e.touches[0].pageX
+      that.state.startY = e.touches[0].pageY
+      that.state.isMoving = true
+      document.addEventListener 'touchmove', that.onTouchMove, false
+
+  onTouchMove: (e) ->
+    that = NotAMouse
+    e.preventDefault() if that.config.preventDefaultEvents
+    if that.state.isMoving
+      dx = that.state.startX - e.touches[0].pageX
+      dy = that.state.startY - e.touches[0].pageY
+
+      if Math.abs(dx) >= that.config.min_move_x
+        that.cancelTouch()
+        if dx > 0 then that.wipeRight() else that.wipeLeft()
+
+      else if Math.abs(dy) >= that.config.min_move_y
+        that.cancelTouch()
+        if dy > 0 then that.wipeDown() else that.wipeUp()
+
+  cancelTouch: ->
+    that = NotAMouse
+    document.removeEventListener 'touchmove', that.onTouchMove
+    that.state.startX = null
+    that.state.isMoving = false
+
+  initialize: ->
+    if 'ontouchstart' of document.documentElement
+      document.addEventListener 'touchstart', NotAMouse.onTouchStart, false
