@@ -26,18 +26,29 @@
         updateWhatHappened('&uarr;')
       }
 
+      KittenWidth = 200;
       function moveBox(direction) {
-        box = document.getElementById('dance_box')
+        image = document.getElementById('kitten_box')
         move = 50
+
         if (direction == 'up') {
-          box.style.top = (box.offsetTop + move) + 'px'
+          KittenWidth += 1
+          image.style.top = (image.offsetTop + move) + 'px'
         } else if (direction == 'down') {
-          box.style.top = (box.offsetTop - move) + 'px'
-        } else if (direction == 'left') {
-          box.style.left = (box.offsetLeft + move) + 'px'
+          KittenWidth -= 1
+          image.style.top = (image.offsetTop - move) + 'px'
         } else if (direction == 'right') {
-          box.style.left = (box.offsetLeft - move) + 'px'
+          KittenWidth += 1
+          image.style.left = (image.offsetLeft - move) + 'px'
+        } else if (direction == 'left') {
+          KittenWidth -= 1
+          image.style.left = (image.offsetLeft + move) + 'px'
         }
+        image.src = newKittenUrl()
+      }
+
+      function newKittenUrl() {
+        return 'http://placekitten.com/200/' + KittenWidth
       }
 
       function updateWhatHappened(content) {
@@ -49,18 +60,22 @@
   <body>
     <header>
       <h1>
-        Touch me!
+        You Are Not a Mouse
         <small style="font-size: 12px">
           <a href="https://github.com/tute/notamouse">github.com/tute/notamouse</a>
+        </small>
+        <br>
+        <small title="Disclaimer: a human on a touch device">
+          JS library for capturing mobile gesture events.
         </small>
       </h1>
     </header>
 
     <p>
       Last event captured:<br>
-      <strong id="what_happened">?</strong>
+      <strong id="what_happened"></strong>
     </p>
 
-    <div id="dance_box"></div>
+    <img id="kitten_box" src="http://placekitten.com/200/200" alt="Slide me!">
   </body>
 </html>
