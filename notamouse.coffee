@@ -8,6 +8,7 @@ NotAMouse =
   # wipeDown: ->
 
   config:
+    elem: document
     min_move_x: 50
     min_move_y: 50
     preventDefaultEvents: true
@@ -17,6 +18,10 @@ NotAMouse =
     startX: null
     startY: null
 
+  initialize: ->
+    if 'ontouchstart' of document.documentElement
+      NotAMouse.config.elem.addEventListener 'touchstart', NotAMouse.onTouchStart, false
+
   onTouchStart: (e) ->
     that = NotAMouse
 
@@ -24,7 +29,7 @@ NotAMouse =
       that.state.isMoving = true
       that.state.startX = e.touches[0].pageX
       that.state.startY = e.touches[0].pageY
-      document.addEventListener 'touchmove', that.onTouchMove, false
+      that.config.elem.addEventListener 'touchmove', that.onTouchMove, false
 
   onTouchMove: (e) ->
     that = NotAMouse
@@ -46,7 +51,3 @@ NotAMouse =
     document.removeEventListener 'touchmove', that.onTouchMove
     that.state.isMoving = false
     that.state.startX = that.state.startY = null
-
-  initialize: ->
-    if 'ontouchstart' of document.documentElement
-      document.addEventListener 'touchstart', NotAMouse.onTouchStart, false

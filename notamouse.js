@@ -3,6 +3,7 @@ var NotAMouse;
 
 NotAMouse = {
   config: {
+    elem: document,
     min_move_x: 50,
     min_move_y: 50,
     preventDefaultEvents: true
@@ -12,6 +13,11 @@ NotAMouse = {
     startX: null,
     startY: null
   },
+  initialize: function() {
+    if ('ontouchstart' in document.documentElement) {
+      return NotAMouse.config.elem.addEventListener('touchstart', NotAMouse.onTouchStart, false);
+    }
+  },
   onTouchStart: function(e) {
     var that;
     that = NotAMouse;
@@ -19,7 +25,7 @@ NotAMouse = {
       that.state.isMoving = true;
       that.state.startX = e.touches[0].pageX;
       that.state.startY = e.touches[0].pageY;
-      return document.addEventListener('touchmove', that.onTouchMove, false);
+      return that.config.elem.addEventListener('touchmove', that.onTouchMove, false);
     }
   },
   onTouchMove: function(e) {
@@ -54,10 +60,5 @@ NotAMouse = {
     document.removeEventListener('touchmove', that.onTouchMove);
     that.state.isMoving = false;
     return that.state.startX = that.state.startY = null;
-  },
-  initialize: function() {
-    if ('ontouchstart' in document.documentElement) {
-      return document.addEventListener('touchstart', NotAMouse.onTouchStart, false);
-    }
   }
 };

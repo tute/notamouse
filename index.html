@@ -2,59 +2,12 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=600px" />
+    <meta name="viewport" content="width=600px">
     <title>You Are Not a Mouse. Touch me!</title>
     <link href='http://twitter.github.com/bootstrap/assets/css/bootstrap.css' rel='stylesheet'>
     <link href='styles.css' rel='stylesheet'>
     <script src="notamouse.js"></script>
-    <script>
-      NotAMouse.initialize()
-      NotAMouse.wipeLeft = function() {
-        moveBox('left')
-        updateWhatHappened('&rarr;')
-      }
-      NotAMouse.wipeRight = function() {
-        moveBox('right')
-        updateWhatHappened('&larr;')
-      }
-      NotAMouse.wipeUp = function() {
-        moveBox('up')
-        updateWhatHappened('&darr;')
-      }
-      NotAMouse.wipeDown = function() {
-        moveBox('down')
-        updateWhatHappened('&uarr;')
-      }
-
-      KittenWidth = 200;
-      function moveBox(direction) {
-        document.getElementById('kitpic').src = newKittenUrl()
-        box = document.getElementById('kitten_box')
-        move = 50
-
-        if (direction == 'up') {
-          KittenWidth += 1
-          box.style.top = (box.offsetTop + move) + 'px'
-        } else if (direction == 'down') {
-          KittenWidth -= 1
-          box.style.top = (box.offsetTop - move) + 'px'
-        } else if (direction == 'right') {
-          KittenWidth += 1
-          box.style.left = (box.offsetLeft - move) + 'px'
-        } else if (direction == 'left') {
-          KittenWidth -= 1
-          box.style.left = (box.offsetLeft + move) + 'px'
-        }
-      }
-
-      function newKittenUrl() {
-        return 'http://placekitten.com/200/' + KittenWidth
-      }
-
-      function updateWhatHappened(content) {
-        document.getElementById('what_happened').innerHTML = content
-      }
-    </script>
+    <script src="app.js"></script>
   </head>
 
   <body>
@@ -62,7 +15,7 @@
       <h1>
         You Are Not a Mouse
       </h1>
-      <h4 title="Disclaimer: a human on a touch device">
+      <h4>
         JS library for capturing mobile swipe events.
         <small style="font-size: 13px">
           <a href="https://github.com/tute/notamouse">github.com/tute/notamouse</a>
@@ -79,5 +32,22 @@
       <img id="kitpic" src="http://placekitten.com/200/200" alt="Slide me!" width="200">
       Forget about LightBoxes and small arrows, slide photos as if you were a human.
     </div>
+
+    <script>
+      NotAMouse.config.elem = document.getElementById('kitten_box')
+      NotAMouse.wipeLeft = function() {
+        App.moveBox('left')
+      }
+      NotAMouse.wipeRight = function() {
+        App.moveBox('right')
+      }
+      NotAMouse.wipeUp = function() {
+        App.moveBox('up')
+      }
+      NotAMouse.wipeDown = function() {
+        App.moveBox('down')
+      }
+      NotAMouse.initialize()
+    </script>
   </body>
 </html>
