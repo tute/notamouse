@@ -3,8 +3,8 @@ var NotAMouse;
 
 NotAMouse = {
   config: {
-    min_move_x: 20,
-    min_move_y: 20,
+    min_move_x: 50,
+    min_move_y: 50,
     preventDefaultEvents: true
   },
   state: {

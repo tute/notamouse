@@ -18,7 +18,7 @@ demonstration. Swipe with one finger in four directions to move around
 the red box.
 
 
-# Forget about jQuery LightBoxes and small arrows, slide photos as if you were a human.
+# Forget about LightBoxes and small arrows, slide photos as if you were a human.
 
 ### Resources
 

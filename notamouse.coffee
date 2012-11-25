@@ -8,8 +8,8 @@ NotAMouse =
   # wipeDown: ->
 
   config:
-    min_move_x: 20
-    min_move_y: 20
+    min_move_x: 50
+    min_move_y: 50
     preventDefaultEvents: true
 
   state:
@@ -19,7 +19,8 @@ NotAMouse =
 
   onTouchStart: (e) ->
     that = NotAMouse
-    if e.touches.length is 1
+
+    if e.touches.length == 1
       that.state.isMoving = true
       that.state.startX = e.touches[0].pageX
       that.state.startY = e.touches[0].pageY

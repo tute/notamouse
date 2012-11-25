@@ -1,24 +1,28 @@
 body {
+  width: 600px;
+  position: relative;
+  margin: auto;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, "Times New Roman", times, serif;
   background: #90b2cc;
   color: #333;
-  line-height: 1.9em;
   text-align: center;
+}
+a {
+  color: blue;
 }
 
 #what_happened {
-  font-size: 60px;
-  line-height: 1.5em;
+  font-size: 40px;
 }
 
-img#kitten_box {
-  width: 250px;
-  height: 250px;
+#kitten_box {
   position: absolute;
-  top: 35%;
-  left: 35%;
+  display: block;
+  width: 200px;
+  top: 250px;
+  left: 200px;
   border: 1px solid yellow;
   border-radius: 5px;
-  padding: 2px;
+  padding: 3px;
   background: yellow;
 }

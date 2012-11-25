@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=600px" />
     <title>You Are Not a Mouse. Touch me!</title>
     <link href='http://twitter.github.com/bootstrap/assets/css/bootstrap.css' rel='stylesheet'>
     <link href='styles.css' rel='stylesheet'>
@@ -28,23 +28,23 @@
 
       KittenWidth = 200;
       function moveBox(direction) {
-        image = document.getElementById('kitten_box')
+        document.getElementById('kitpic').src = newKittenUrl()
+        box = document.getElementById('kitten_box')
         move = 50
 
         if (direction == 'up') {
           KittenWidth += 1
-          image.style.top = (image.offsetTop + move) + 'px'
+          box.style.top = (box.offsetTop + move) + 'px'
         } else if (direction == 'down') {
           KittenWidth -= 1
-          image.style.top = (image.offsetTop - move) + 'px'
+          box.style.top = (box.offsetTop - move) + 'px'
         } else if (direction == 'right') {
           KittenWidth += 1
-          image.style.left = (image.offsetLeft - move) + 'px'
+          box.style.left = (box.offsetLeft - move) + 'px'
         } else if (direction == 'left') {
           KittenWidth -= 1
-          image.style.left = (image.offsetLeft + move) + 'px'
+          box.style.left = (box.offsetLeft + move) + 'px'
         }
-        image.src = newKittenUrl()
       }
 
       function newKittenUrl() {
@@ -61,21 +61,23 @@
     <header>
       <h1>
         You Are Not a Mouse
-        <small style="font-size: 12px">
+      </h1>
+      <h4 title="Disclaimer: a human on a touch device">
+        JS library for capturing mobile swipe events.
+        <small style="font-size: 13px">
           <a href="https://github.com/tute/notamouse">github.com/tute/notamouse</a>
         </small>
-        <br>
-        <small title="Disclaimer: a human on a touch device">
-          JS library for capturing mobile gesture events.
-        </small>
-      </h1>
+      </h4>
     </header>
 
     <p>
-      Last event captured:<br>
-      <strong id="what_happened"></strong>
+      Last event captured:
+      <strong id="what_happened">&nbsp;</strong>
     </p>
 
-    <img id="kitten_box" src="http://placekitten.com/200/200" alt="Slide me!">
+    <div id="kitten_box">
+      <img id="kitpic" src="http://placekitten.com/200/200" alt="Slide me!" width="200">
+      Forget about LightBoxes and small arrows, slide photos as if you were a human.
+    </div>
   </body>
 </html>
